@@ -40,7 +40,7 @@ Note: When specifying model name, ensure that the name is equal (characterwise) 
 6. When running a custom model, your config file looks a bit different:  
 `{"custom":true, "model":{name of folder in Vision-Node/Models directory}`  
 7. When running custom models, you have to create a folder with the name of your model in the Vision-Node/Models directory. Inside of this folder, you have to put the [.pth file to the entire model, not the state_dict .pth file](https://pytorch.org/tutorials/beginner/saving_loading_models.html) and rename it model.pth. Then, a template is provided for a python file you must create in this folder named model.py. Inside of this file, you should have a class called Model and two functions which you can provide custom definitions to (preprocess, forward). Again, a template and example is provided for what a custom model directory should look like. 
-8. In order to actually run inferencing, use this command from the manager terminal:
+8. In order to actually run inferencing, use this command from the manager terminal:  
 `manager.inference()`  
 `#prompt asking user for the name of the config file (e.g. 'test.json')`  
 `#online inferencing should start and outputs are printed in the manager terminal`  
