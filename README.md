@@ -30,5 +30,11 @@ A PC with the following packages:
 `from node import Node`  
 `node = Node()`  
 `#prompt to enter desired port number, same number as entered for manager`  
-`node.connect()`  
-
+`node.connect() #on the manager side, you should see a printout stating that a connection has been created`  
+4. Before running inferencing, first test whether the node's camera pipeline is functioning using the takeImage() function. 
+`manager.takeImage()`  
+`#prompt asking user if they want to save the image`  
+5. When running inferencing, you can either run a [standard pretrained classification model](https://pytorch.org/vision/stable/models.html) or run a custom model. You need to create a config .json file before running inferencing and store it inside of the Vision-Manager folder. Example config files are provided (test.json, test2.json). When running a standard model, this should be what your config file looks like:  
+`{"custom":false,"model":{name of model, e.g. (resnet18, alexnet, vgg16}, "height":{integer value specifying height of images taken as input by model, "width":{integer value specifying width of images taken as input by model}}`  
+Note: When specifying model name, ensure that the name is equal (characterwise) to the torchvision constructors (e.g. "resnet18" not ResNet18)  
+6. 
