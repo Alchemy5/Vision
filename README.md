@@ -37,4 +37,11 @@ A PC with the following packages:
 5. When running inferencing, you can either run a [standard pretrained classification model](https://pytorch.org/vision/stable/models.html) or run a custom model. You need to create a config .json file before running inferencing and store it inside of the Vision-Manager folder. Example config files are provided (test.json, test2.json). When running a standard model, this should be what your config file looks like:  
 `{"custom":false,"model":{name of model, e.g. (resnet18, alexnet, vgg16}, "height":{integer value specifying height of images taken as input by model, "width":{integer value specifying width of images taken as input by model}}`  
 Note: When specifying model name, ensure that the name is equal (characterwise) to the torchvision constructors (e.g. "resnet18" not ResNet18)  
-6. 
+6. When running a custom model, your config file looks a bit different:  
+`{"custom":true, "model":{name of folder in Vision-Node/Models directory}`  
+7. When running custom models, you have to create a folder with the name of your model in the Vision-Node/Models directory. Inside of this folder, you have to put the [.pth file to the entire model, not the state_dict .pth file](https://pytorch.org/tutorials/beginner/saving_loading_models.html) and rename it model.pth. Then, a template is provided for a python file you must create in this folder named model.py. Inside of this file, you should have a class called Model and two functions which you can provide custom definitions to (preprocess, forward). Again, a template and example is provided for what a custom model directory should look like. 
+8. In order to actually run inferencing, use this command from the manager terminal:
+`manager.inference()`  
+`#prompt asking user for the name of the config file (e.g. 'test.json')`  
+`#online inferencing should start and outputs are printed in the manager terminal`  
+9. Before exiting out of the manager terminal, always make sure to run the `manager.end()` command, since this will close all pipelines. After an inferencing session is over, you will have to create a new manager instance and new node instance for another session. Also, you can use two or more seperate manager and node instances (each node instance will be instantiated on a different Jetson Nano) to run inferencing on multiple nodes at the same time. 
